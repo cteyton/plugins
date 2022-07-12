@@ -32,3 +32,18 @@ async getUsersSessionInformation() {
         this.ThemisAPIService.handleError(error);
     }
 }
+
+async setSessionOnReviewAndNavigateToRetrospective() {
+    try {
+        await this.ThemisCraftWorkshopSessionService.setCraftWorkshopSessionToReviewStep(
+            this.craftWorkshopInformations._id,
+        );
+
+        this.ThemisNavigationService.goToCraftWorkshopRetrospectiveStart({
+            craftWorkshopSessionId: this.craftWorkshopInformations._id,
+        });
+        this.$scope.$apply();
+    } catch (error) {
+        this.ThemisAPIService.handleError(error);
+    }
+}
